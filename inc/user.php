@@ -26,7 +26,7 @@ class User {
 
 		try{
 			if($this->_db == NULL){
-				echo "its null!";
+				echo "db is null!";
 			}
 			$stmt = $this->_db->prepare($sql);
 			$stmt -> bindParam(':user_email', $_POST['user_email'], PDO::PARAM_STR);

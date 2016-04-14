@@ -1,9 +1,13 @@
+/* 
+css taken from original site melbournestatus.co.uk
+*/
 html { font-family:Arial, Verdana, sans-serif; font-size:12px; color:#444; background:#FFF;}
 
 #header {width:775px; margin:auto; text-align:right; margin-top:20px; font-size:90%; margin-bottom: 20px}
 #header .inner { background-image:url('images/logo.png'); background-repeat:no-repeat; height:56px}
 #header .inner ul {padding-top: 45px; }
 #header .inner ul li {display:inline; margin-left:10px;}
+#header .inner ul li {color:#999;}
 #header .inner ul li a { color:#999;}
 #header .inner ul li a:hover { color:#444; }
 #header .inner ul li a#major_issue_link { color: red; }
