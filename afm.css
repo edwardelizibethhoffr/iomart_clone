@@ -1,0 +1,28 @@
+.afm h1, #content .afm h2,
+.afm h3, #content .afm h4,
+.afm h5, #content .afm h6,
+.afm p, #content .afm blockquote,
+.afm ul, #content.afm li
+  { font-size:12px ; margin:0; font-weight:normal; padding:0; text-align:left; border:0px;}
+
+.afm h1 { font-size:200%; font-weight:bold; margin:15px 0;}
+.afm h2 { font-size:180%; font-weight:bold; margin:15px 0; border-top:6px solid #efefef; padding-top:7px; }
+.afm h3 { font-size:160%; font-weight:bold; margin:15px 0;}
+.afm h3 { font-size:140%; font-weight:bold; margin:15px 0;}
+.afm a { color:#333;}
+.afm h4 { font-size:130%; font-weight:bold; margin:15px 0; border-top:2px solid #ccc; padding-top:5px;}
+.afm h5 { font-size:120%; font-weight:bold; margin:15px 0;}
+.afm h6 { font-size:100%; font-weight:bold; margin:15px 0;}
+.afm p { margin:15px 0; line-height:1.5;}
+.afm ul { margin:10px 0; margin-left:30px; line-height:1.5;}
+.afm ul li { list-style:disc;}
+.afm ol { margin:10px 0; margin-left:30px; line-height:1.5;}
+.afm b, #content .afm strong { font-weight:bold;}
+.afm i, #content .afm em { font-style:italic;}
+.afm ol li { list-style:decimal;}
+.afm p code, #content .afm ul li code { background:#efefef; border:1px solid #ccc; padding:1px 5px;}
+.afm pre { background:#efefef; border:1px solid #ccc; padding:5px; overflow-x:auto; line-height:1.4; margin:10px 0;}
+.afm blockquote { background:#efefef; margin:10px; padding:10px; font-style:italic; }
+.afm blockquote p {margin:0;}
+.afm table {margin:10px 0;}
+.afm table tr td { border:1px solid #ccc; padding:5px;}
