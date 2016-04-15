@@ -10,14 +10,25 @@ include_once "inc/get_events.php";
 			$e = new Event($db);
 			$event_id = $_GET['event_id'];
 			$event_array = $e -> getEvent($event_id);
+			$resolved = $event_array['resolved'];
 			$resolved_date = date("F j, Y,g:1 a",strtotime(date($event_array['resolved_date'])));
+			$scheduled_date = date("F j, Y,g:1 a",strtotime(date($event_array['scheduled_to_occur']))); 
 			$status_colour = $event_array['colour'];
 			$status_name = $event_array['name'];
 			$comments = $e->getComments($event_id);
 		?>
 		<div class="current" style=<?php echo "\"" ?> background-color:<?php echo $status_colour . "\""; ?> > <?php echo $status_name;?> </div>
 		<h1><?php echo $event_array['title'];?></h1>
+		<?php if($resolved){?>
 		<p class = "meta">Resolved At <?php echo $resolved_date; ?></p>
+		<?php 
+			}
+			else{
+		?>
+		<p class = "meta">Scheduled for <?php echo $scheduled_date; ?></p>
+		<?php 
+			}
+		?>	
 		<p></p>
 		<div class = "afm cfm">
 			<p><?php echo $event_array['content']; ?></p> 

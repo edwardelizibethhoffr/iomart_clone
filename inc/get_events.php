@@ -22,11 +22,12 @@ class Event{
     			FROM event 
     			JOIN status 
     			WHERE event.status_id_fk = status.status_id 
-    			AND status.resolved = 0; ";
+    			AND status.resolved = 0 ORDER BY scheduled_to_occur ASC; ";
 
     	$stmt = $this->_db->prepare($sql);
     	$stmt->execute();
-    	if($stmt->rowCount()>0){
+    	return $stmt;
+        /*if($stmt->rowCount()>0){
     		echo "<ul class = 'event'>" ;
     		while($row = $stmt->fetch()){
     			$event_id = $row['event_id'];
@@ -39,7 +40,7 @@ class Event{
     	else{
     			echo "<p class='no-events'>No Current Events</p>";
 
-    		}
+    		}*/
     }
     //<div class='current' style='background-colour:". $colour."'>".$name."</div>
     public function formatListItems($row){
