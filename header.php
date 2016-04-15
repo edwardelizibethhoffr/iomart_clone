@@ -10,8 +10,9 @@
     <link rel="stylesheet" type="text/css" href = "reset.css"></link>
     <link rel="stylesheet" type="text/css" href = "application.css"></link>
     <link rel="stylesheet" type="text/css" href = "afm.css"></link>
+    <script type="text/javascript" src="application.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 
-    <script type='text/javascript' src='//ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js?ver=1.3.2'></script>
     <link type = "application/rss+xml" title = "Subscribe to the RSS feed" rel = "alternate" 
             href = "events.rss"></link>
 </head>

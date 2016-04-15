@@ -78,6 +78,43 @@ class Event{
     		echo "<p class='no-events'>No Unresolved Events</p><br>";
     	}*/
     }
+
+    //function returns event row from table by id
+    public function getEvent($id){
+        $sql = "SELECT *
+                FROM event
+                JOIN status
+                WHERE event_id = ".$id."
+                AND status.status_id = event.status_id_fk;";
+        $stmt = $this->_db->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetch();
+    }
+
+    //returns all comments for a given event id
+    public function getComments($id){
+        $sql = "SELECT *
+                FROM comment
+                WHERE event_id=".$id."
+                ORDER BY date_added DESC;";
+        $stmt = $this->_db->prepare($sql);
+        $stmt->execute();
+        return $stmt ->fetchAll();
+
+        /*$comments[];
+        foreach($row =$stmt->fetch()){
+            $comment_id = $row['comment_id'];
+            $date = date("F j, Y,g:1 a",strtotime(date($row['date_added'])));
+            $content = $row['content'];
+            $comment = "<div id = 'comments'>
+                      <h2>Latest Update</h2>
+                      <div class='comment'>
+                      <h4><div class='meta'> Updated at".$date." 
+                      </div></h4>
+                      </div>
+                      </div>";
+        }*/        
+    }
 }
 
 ?>

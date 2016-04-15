@@ -1,8 +1,7 @@
 <?php
 	include_once "header.php";
-	include_once "inc/event.php";
-	include_once "inc/paginate.php";
-	
+	include_once "inc/get_events.php";
+	include_once "inc/paginate.php";	
 ?>
 
 <div id = "content">
@@ -10,7 +9,7 @@
 	<h1>Melbourne Server Hosting</h1>
 	<p class="meta">
 			Any information regarding active issues or planned maintenance will be made available here.
-		</p>
+	</p>
 
 	<?php
 		//display all the resolved events paginated - 5 per page 
@@ -57,8 +56,9 @@
     			}
     			$row = $result_array[$i];
     			$title = $row['title'];
+    			$id = $row['event_id'];
     			$resolved = date("F j, Y,g:1 a",strtotime(date($row['resolved_date'])));
-    			echo "<li class = 'event' style=''><h4 style=''><a style='' href = ''>"
+    			echo "<li class = 'event' style=''><h4 style=''><a style='' href = 'event.php?event_id=". $id."'>"
     					.$title."</a></h4>
     					<p class = 'date'>Resolved At " .$resolved."</p></li>";
     		}

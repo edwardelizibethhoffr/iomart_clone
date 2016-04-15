@@ -1,6 +1,6 @@
 <?php 
 include_once "header.php"; 
-include_once "inc/event.php";
+include_once "inc/get_events.php";
 ?>
 
 <div id="content">
@@ -15,7 +15,7 @@ include_once "inc/event.php";
 			$e = new Event($db);
 			$e->loadUnresolvedEvents();
 		?>
-		
+
 		<p class="contact-support"> 
 			For support, please submit a ticket through our <a href = "https://support.melbourne.co.uk">support centre</a>.
 		</p>

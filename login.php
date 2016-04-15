@@ -10,7 +10,7 @@
 	<?php
 		if(!empty($_SESSION['LoggedIn']) && !empty($_SESSION['Useremail'])):
 	?>
-	<h1>You are signed in as: <?php echo $_SESSION['Useremail'];?></h1>
+	<h1>Signed in as: <?php echo $_SESSION['Useremail'];?></h1>
 	<br>
 	<br>
 	<form method = "post" action = "logout.php" name = "logoutbutton" id = "logoutbutton">
