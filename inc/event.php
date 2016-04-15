@@ -1,5 +1,5 @@
 <?php
-
+//class handles queries to database for resolved and unresolved events
 class Event{
 	private $_db;
 
@@ -53,16 +53,17 @@ class Event{
     			</li>";
     }
 
-    public function loadResolvedEvents(){
+    public function getResolvedEvents(){
     	$sql = "SELECT event.event_id, event.title, event.content, event.last_updated, event.resolved_date, status.colour, status.name 
     			FROM event 
     			JOIN status 
     			WHERE event.status_id_fk = status.status_id 
-    			AND status.resolved = 1; ";
+    			AND status.resolved = 1 ORDER BY resolved_date DESC; ";
 
     	$stmt = $this->_db->prepare($sql);
     	$stmt->execute();
-    	if($stmt->rowCount()!= NULL){
+    	return $stmt;
+    	/*if($stmt->rowCount()!= NULL){
     		echo "<h3 class = 'future'> Resolved Events</h3><ul class='events resolved'>";
     		while($row = $stmt->fetch()){
     			$title = $row['title'];
@@ -75,7 +76,7 @@ class Event{
     	}
     	else{
     		echo "<p class='no-events'>No Unresolved Events</p><br>";
-    	}
+    	}*/
     }
 }
 
