@@ -1,31 +1,9 @@
-<?php
-	include_once "db.php";
-
-	header("Content-Type: application/rss+xml; charset=ISO-8859-1");
-
-	$rssfeed = '<?xml version="1.0" encoding="ISO-8859-1"?>';
-	$rssfeed .= '<rss version="2.0">';
-    $rssfeed .= '<channel>';
-    $rssfeed .= '<title>My RSS feed</title>';
-    $rssfeed .= '<link>/mel</link>';
-    $rssfeed .= '<description>This is the unresolved status RSS feed </description>';
-
-    $sql_query = "SELECT event.event_id, event.title, event.content, event.last_updated, event.scheduled_to_occur, status.colour, status.name FROM event JOIN status WHERE event.status_id_fk = status.status_id AND status.resolved = 0;";
-
-    foreach($db->query($sql) as $row){
-    	extract($row);
-
-    	$rssfeed .= '<item>';
-        $rssfeed .= '<title>' . $event.title . '</title>';
-        $rssfeed .= '<content>' . $event.content . '</content>';
-        $rssfeed .= '<colour>' . $status.colour . '</colour>';
-        $rssfeed .= '<name>' . $status.name . '</name>';
-        $rssfeed .= '<lastUpdate>' . date("D, d M Y H:i:s O", strtotime($event.last_updated)) . '</lastUpdate>';
-        $rssfeed .= '<schedDate>' . date("D, d M Y H:i:s O", strtotime($event.scheduled_to_occur)) . '<schedDate>';
-        $rssfeed .= '</item>';
-    }
-
-    $rssfeed .= '</channel>';
-    $rssfeed .= '</rss>';
-    echo $rssfeed;
-?>
+<rss version="2.0">
+<channel>
+    <item>
+    <title>Melbourne Hosting Status</title>
+    <link>index.php</link>
+    <description>Scheduled Events </description>
+    </item>
+</channel>
+</rss>
