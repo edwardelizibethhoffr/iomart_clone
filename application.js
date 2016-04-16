@@ -8,5 +8,12 @@ function toggleVisible(div){
   		}
 }
 
+function toggleEdit(div){
+	$("#hidden_edit").toggle();
+}
+
+function clearContents(element) {
+  element.value = '';
+}
 
 

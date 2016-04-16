@@ -20,13 +20,14 @@
 	</form>
 	
 	<!-- IF LOGGED OUT -->
-	<?php elseif(!empty($_POST['user_email']) && !empty($_POST['user_password'])):
-		include_once 'inc/user.php';
-		$users = new User($db);
-		if($users->accountLogin() == TRUE):
-			echo "<meta http-equiv='refresh' content='0;/mel'>";
-            exit;
-        else:
+	<?php 
+		elseif(!empty($_POST['user_email']) && !empty($_POST['user_password'])):
+			include_once 'inc/user.php';
+			$users = new User($db);
+			if($users->accountLogin() == TRUE):
+				echo "<meta http-equiv='refresh' content='0;/mel'>";
+            	exit;
+        	else:
     ?>
 
 	<h1>Login failed  - try again</h1>
@@ -41,6 +42,7 @@
 		</dd>
 	</dl>
 	</form>
+
 	<?php 
 		endif;
 	else:
@@ -61,8 +63,9 @@
 	</form>
 	
 	<?php
-	endif;
+		endif;
 	?>
+	
 </div>
 </div>
 

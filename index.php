@@ -51,7 +51,7 @@ include_once "inc/get_events.php";
 		$reload = $_SERVER['PHP_SELF'] . "?tpages=" . $tpages;
 		$result_array = $result -> fetchAll();
 		if($result->rowCount()!= NULL){
-    		echo "<h3 class = 'future'> Upcoming Events</h3><ul class='events resolved'>";
+    		echo "<h3 class = 'future'> Upcoming Events</h3><ul class='events future'>";
     		 for($i = $start; $i < $end; $i++){  //while($row = $result->fetch()){
     			if($i == $total_rows){
     				break;

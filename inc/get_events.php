@@ -27,22 +27,9 @@ class Event{
     	$stmt = $this->_db->prepare($sql);
     	$stmt->execute();
     	return $stmt;
-        /*if($stmt->rowCount()>0){
-    		echo "<ul class = 'event'>" ;
-    		while($row = $stmt->fetch()){
-    			$event_id = $row['event_id'];
-    			$event_title = $row['title'];
-    			echo $this->formatListItems($row);
-    		}
-    		echo "</ul>";
-    		$stmt->closeCursor();	
-    	}
-    	else{
-    			echo "<p class='no-events'>No Current Events</p>";
-
-    		}*/
     }
-    //<div class='current' style='background-colour:". $colour."'>".$name."</div>
+
+    
     public function formatListItems($row){
     	$title = $row['title'];
     	$colour = $row['colour'];
@@ -64,20 +51,6 @@ class Event{
     	$stmt = $this->_db->prepare($sql);
     	$stmt->execute();
     	return $stmt;
-    	/*if($stmt->rowCount()!= NULL){
-    		echo "<h3 class = 'future'> Resolved Events</h3><ul class='events resolved'>";
-    		while($row = $stmt->fetch()){
-    			$title = $row['title'];
-    			$resolved = date("F j, Y,g:1 a",strtotime(date($row['resolved_date'])));
-    			echo "<li class = 'event' style=''><h4 style=''><a style='' href = ''>"
-    					.$title."</a></h4>
-    					<p class = 'date'>Resolved At " .$resolved."</p></li>";
-    		}
-    		echo "</ul>";
-    	}
-    	else{
-    		echo "<p class='no-events'>No Unresolved Events</p><br>";
-    	}*/
     }
 
     //function returns event row from table by id
@@ -100,21 +73,41 @@ class Event{
                 ORDER BY date_added DESC;";
         $stmt = $this->_db->prepare($sql);
         $stmt->execute();
-        return $stmt ->fetchAll();
+        return $stmt ->fetchAll();       
+    }
 
-        /*$comments[];
-        foreach($row =$stmt->fetch()){
-            $comment_id = $row['comment_id'];
-            $date = date("F j, Y,g:1 a",strtotime(date($row['date_added'])));
-            $content = $row['content'];
-            $comment = "<div id = 'comments'>
-                      <h2>Latest Update</h2>
-                      <div class='comment'>
-                      <h4><div class='meta'> Updated at".$date." 
-                      </div></h4>
-                      </div>
-                      </div>";
-        }*/        
+    //function posts new comment to database
+    public function postComment($comment,$id){
+        $date = date("Y-m-d H:i:s");
+        $sql = "INSERT INTO comment(event_id, date_added, content) 
+                VALUES (".$id.",'".$date."','".$comment."');";
+        $stmt = $this->_db->prepare($sql);
+        $stmt->execute();
+        
+    }
+
+    //function to edit comment
+    public function editComment($id,$comment,$event_id){
+    
+        $date =  date("Y-m-d H:i:s");
+        $sql = "UPDATE comment
+                SET content='".$comment."', date_added='".$date."'
+                WHERE comment_id ='".$id."';
+                UPDATE event
+                SET last_updated=".$date."
+                WHERE event_id=".$event_id.";";
+        $stmt = $this->_db->prepare($sql);
+        $stmt->execute();
+    }
+
+    public function eventResolved($id){
+        $date =  date("Y-m-d H:i:s");
+        $sql = "UPDATE event
+                SET status_id_fk = 1, resolved_date='".$date."'
+                WHERE event_id=".$id.";";
+        echo $sql;
+        $stmt = $this->_db->prepare($sql);
+        $stmt->execute();
     }
 }
 

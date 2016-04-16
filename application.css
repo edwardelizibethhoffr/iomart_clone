@@ -40,6 +40,7 @@ html { font-family:Arial, Verdana, sans-serif; font-size:12px; color:#444; backg
 #content ul.comments {margin:10px 0;}
 #content ul.comments li.comment {}
 #content ul.comments li.comment h4 { font-size:110%; margin:10px 0; border-bottom:4px solid #efefef;}
+#content div.comments a.delete { float:right;}
 
 #content ul.statuses { overflow:auto; margin:10px 0 0   0;}
 #content ul.statuses li { float:left; color:#fff; font-size:90%; font-weight:bold; padding:4px; -webkit-border-radius:5px; -moz-border-radius:5px; border-radius:5px; margin-right:5px;}
