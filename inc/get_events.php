@@ -105,7 +105,7 @@ class Event{
         $sql = "UPDATE event
                 SET status_id_fk = 1, resolved_date='".$date."'
                 WHERE event_id=".$id.";";
-        echo $sql;
+        
         $stmt = $this->_db->prepare($sql);
         $stmt->execute();
     }

@@ -14,7 +14,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 
     <link type = "application/rss+xml" title = "Subscribe to the RSS feed" rel = "alternate" 
-            href = "events.rss"></link>
+            href = "localhost:81/mel/events-rss.php"></link>
 </head>
 
 <body>

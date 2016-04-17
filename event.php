@@ -10,7 +10,7 @@ include_once "inc/get_events.php";
 			$e = new Event($db);
 
 			//if post with update_comment is not null we update the given comment
-			if($_POST!=NULL && $_GET['update_comment'] != NULL){
+			if($_POST!=NULL && isset($_GET['update_comment']) != NULL){
 				$e->editComment($_GET['update_comment'], $_POST['comment'],$_GET['event_id']);
 			
 			}
