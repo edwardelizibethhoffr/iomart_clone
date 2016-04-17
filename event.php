@@ -14,10 +14,13 @@ include_once "inc/get_events.php";
 				$e->editComment($_GET['update_comment'], $_POST['comment'],$_GET['event_id']);
 			
 			}
+			elseif($_POST != NULL && isset($_GET['delete_comment'])){
+				$e->deleteComment($_GET['delete_comment'], $_GET['event_id']);
+			}
 			elseif(isset($_GET['r']) == 1){ //mark event as resolved
 				$e->eventResolved($_GET['event_id']);
 			}
-			elseif($_POST!=NULL){
+			elseif($_POST!=NULL && isset($_POST['comment'])){
 				//if post not null - add new comment
 				$e->postComment($_POST['comment'], $_GET['event_id']);
 			
@@ -48,8 +51,14 @@ include_once "inc/get_events.php";
 		?>
 
 		<p class = "meta">Scheduled for <?php echo $scheduled_date; ?></p>
+
+		<?php
+			if(isset($_SESSION['LoggedIn']) && isset($_SESSION['Useremail'])){
+		?>
+
 		<a href= <?php echo "\"event.php?event_id=".$event_id."&r=1\""?> >Mark As Resolved</a>
 		<?php 
+				}
 			}
 		?>	
 		
@@ -69,7 +78,7 @@ include_once "inc/get_events.php";
 		?> 
 				<div id = 'comments'>
 					  <h2>Latest Update</h2>
-					  <div class='comment'>
+					<div class='comment'>
 					  <h4><div class='meta'>Updated at <?php echo $latest_date; ?> </div></h4>
 					  <div class='afm cfm'>
 					  	<p><?php echo $latest_content; ?></p>
@@ -80,20 +89,28 @@ include_once "inc/get_events.php";
 					  	if(isset($_SESSION['LoggedIn']) && isset($_SESSION['Useremail'])){
 					  ?>
 					  <div>
-					  <a href="javascript:toggleEdit()">Edit</a>   <a style="position:relative;left:25px;" class ='delete' >Delete</a>
-					  
-					  <div id= 'hidden_edit' style="display:none;">
+					 <?php 
 
-					  		<form method="post" action= <?php echo "\"event.php?event_id=".$event_id."&update_comment=".$comment_id."\"" ?> ><dl><dd>
+					 	 echo "<a href=\"javascript:toggleEdit('hidden_edit_".$comment_id."')\">Edit</a>"; 
+						?>  
+					  
+					 <?php echo "<div id='hidden_edit_".$comment_id."' style='display:none;'>"; ?>
+
+					 		<form method="post" action= <?php echo "\"event.php?event_id=".$event_id."&update_comment=".$comment_id."\"" ?> >
+					  		<dl><dd>
 							<textarea name = "comment"><?php echo $latest_content ?> </textarea>
-							<dd>
+							</dd>
 							<dd class="submit">
 							<input name="commit" value="Add Comment" type="submit">
 							</dd>
 							</dl>
 							</form>
-					  </div>
-					  
+							<form method="post" action= <?php echo "\"event.php?event_id=".$event_id."&delete_comment=".$comment_id."\"" ?> >
+							<dl><dd class = "submit">
+							<input name="commit" value="Delete Comment" type="submit"></dd></dl>
+							</form>
+							
+					  </div>	  
 					  <br><br>
 					  </div>
 					  <?php
@@ -125,23 +142,62 @@ include_once "inc/get_events.php";
 					<h4><div class='meta'>Updated at <?php echo $date; ?> </h4>
 					
 					<div class='afm cfm'><p><?php echo $content; ?></p></div>
+					
+					<?php //if logged in can edit/delete comment
+					  	if(isset($_SESSION['LoggedIn']) && isset($_SESSION['Useremail'])){
+					  ?>
+				
+					  <a href="javascript:toggleEdit()">Edit</a> 
+					  
+					<?php echo "<div id='hidden_edit_".$comment_id."' style='display:none;'>"; ?>
+
+					  		<form method="post" action= <?php echo "\"event.php?event_id=".$event_id."&update_comment=".$id."\"" ?> >
+					  		<dl><dd>
+							<textarea name = "comment"><?php echo $latest_content ?> </textarea>
+							</dd>
+							<dd class="submit">
+							<input name="commit" value="Add Comment" type="submit">
+							</dd>
+							</dl>
+							</form>
+
+							<form method="post" action= <?php echo "\"event.php?event_id=".$event_id."&delete_comment=".$id."\"" ?> ><dl>
+							<dd class="submit">
+							<input name="commit" value="Delete Comment" type="submit">
+							</dd>
+							</dl>
+							</form>
+
+					  </div>
+					  
+					  <?php
+					  	}
+					  ?>
+
+
+
 				</div>
+				
 
 				<?php //END FOR
+						
 					  }
 				?>
 
-				</div>
-				</div>
-
+			</div>
+			</div>
 			<?php
 					} //CLOSE IF
 				}
+			?>
+		
+
+		<?php
 				 //if user is logged in enable add comment
 				if(isset($_SESSION['LoggedIn']) && isset($_SESSION['Useremail'])){
 			?>
 
-			<div class="add comment"> 
+			<div class = 'add comment'> 
 				<form method="post" action= <?php echo "\"event.php?event_id=".$event_id."\"" ?> ><dl><dd>
 				<textarea name = "comment" onfocus="clearContents(this);">Add comment...</textarea>
 				<dd>
@@ -158,7 +214,6 @@ include_once "inc/get_events.php";
 				} 
 			?>
 	</div>
-
 </div>
 
 <?php

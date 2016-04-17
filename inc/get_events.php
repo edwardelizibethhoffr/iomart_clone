@@ -109,6 +109,17 @@ class Event{
         $stmt = $this->_db->prepare($sql);
         $stmt->execute();
     }
+
+    public function deleteComment($comment_id, $event_id){
+        $date =  date("Y-m-d H:i:s");
+        $sql = "DELETE FROM comment
+                WHERE comment_id=".$comment_id.";
+                UPDATE event
+                SET last_updated=".$date."
+                WHERE event_id=".$event_id.";";
+        $stmt = $this->_db->prepare($sql);
+        $stmt->execute();
+    }
 }
 
 ?>

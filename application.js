@@ -9,7 +9,7 @@ function toggleVisible(div){
 }
 
 function toggleEdit(div){
-	$("#hidden_edit").toggle();
+	$("#"+div).toggle();
 }
 
 function clearContents(element) {
